@@ -47,4 +47,17 @@ df
 df %>% group_by(gear) %>% summarise( n = n())
 df %>% group_by(gear , cyl) %>% summarise( n = n())
 
+#functions----
+t(df)
 
+df = mtcars
+head(df)
+#meanMPG-txtype----
+df %>% group_by(am) %>% summarise( meanMPG = mean(mpg, na.rm=t))
+#change----
+#double the mpg for am=0
+library(ggplot2)
+df %>% group_by(gear) %>% summarise(meanMPG = round(mean(mpg, na.rm=T))) %>% mutate(gear = factor(gear)) %>% ggplot(., aes(x=gear, y= meanMPG)) + geom_col(aes(fill=gear)) + geom_text(aes(label=meanMPG)) + labs(title ='Mean mpg of each Gear Type')
+df %>% mutate( mpg2 = if_else(am==0, mpg *2, mpg)) %>% select(am, mpg, mpg2)
+df %>% group_by(gear) %>% summarise(meanMPG = mean(mpg, na.rm=T)) %>% mutate
+(gear = factor(gear)) %>% ggplot(., aes(x=gear , y= meanMPG)) + geom_col(aes(fill=gear)) + geom_text(aes(label=meanMPG))                                                                    
