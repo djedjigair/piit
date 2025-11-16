@@ -1,0 +1,35 @@
+library(dplyr)
+
+#rbind----
+(df1 = data.frame(rollno = 1:5, name = paste('Student',1:5)))
+(df2 = data.frame(rollno = 11:15, name = paste('Student',11:15)))
+
+df12 = rbind(df1, df2)
+df12
+
+#cbind-----
+(df3 = data.frame(rollno = 1:5, name = paste('Student',1:5)))
+(df4 = data.frame(rollno = 1:5, gender = c('M','F','M','F','M')))
+
+df34 = cbind(df3, df4)
+df34
+
+
+#join-----
+df34B = merge(df3, df4, by='rollno')
+df34B
+(df6 = data.frame(rollno = 80:90, name = paste('student' , 80:90)))
+(df7 = data.frame( rollno = 70:75, name = paste('student', 70:75)))
+df67 = rbind(df7,df6)
+df67
+
+(df8= data.frame(rollno = 80:90, name = paste ('student', 80:90))) 
+(df9 = data.frame(rollno = 80:90, gender = sample(x=c('M','F'), size=11, replace=T)))
+df89= cbind(df8, df9)
+df89
+
+df99= merge(df8, df9, by = 'rollno')
+df99
+
+df100= merge(df8, df9, by='rollno', all.x=T, all.y=F)
+df100
